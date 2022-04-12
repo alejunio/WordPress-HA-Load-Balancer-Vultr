@@ -17,6 +17,8 @@ Esse projeto pode servir de embasamento para hospedagens de sites em WordPress q
 - Sites de Streaming e Eventos ao vivo
 - Plataformas EAD WordPress
 
+🎯 Playlist no Youtube com as aulas: 
+
 ## Links Úteis
 💲 Cadastre na Vultr e ganhe $100 dólar grátis: https://bit.ly/3oFlqVOs </br>
 💼 Suporte e Consultoria: https://alexjunio.com.br </br>
