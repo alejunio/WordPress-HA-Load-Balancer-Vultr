@@ -1,0 +1,11 @@
+## CONFIGURACAO E TESTES LOAD BALANCER
+
+1. Configurar Load Balancer + SSL 
+2. Configurar apontamento CloudFlare 
+
+3. Testar load balancer 
+
+# no index.php
+<?php
+echo gethostname(); // may output e.g,: sandie
+?>

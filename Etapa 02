@@ -1,0 +1,61 @@
+## CONFIGURAR O SERVIDOR DE ARQUIVOS COMPARTILHADO
+Software: GlusterFS
+https://www.gluster.org/
+https://docs.gluster.org/en/latest/
+
+
+1. INSTALAR O GLUSTERFS EM CADA SERVIDOR WEB
+
+web01
+web02
+web03
+
+Iniciar o servico
+$ service glusterd start
+$ systemctl enable glusterd
+
+https://docs.gluster.org/en/latest/Install-Guide/Install/
+---------------------------------------------------------------------------------------------
+
+
+2. ADICIONAR SERVIDORES AO POOL 
+
+Acessar o web01 e adicionar servidores ao pool 
+$ gluster peer probe web02
+$ gluster peer probe web03
+
+
+Verifique o status e a lista do pool
+$ gluster peer status
+$ gluster pool list
+---------------------------------------------------------------------------------------------
+
+3. CONFIGURAR O VOLUME, BRICKS PONTO/MONTAGEM
+
+Em cada servidor criar o diretorio do volume
+$ mkdir -p /glusterfs/volume_wordpress
+
+
+No servidor principal, crie o volume
+$ gluster volume create vol01 replica 3 transport tcp web01:/glusterfs/volume_wordpress web02:/glusterfs/volume_wordpress web03:/glusterfs/volume_wordpress force
+
+No servidor principal, inicie o volume
+$ gluster volume start vol01
+$ gluster volume info vol01
+
+$ Montar os bricks em cada servidor
+$ mkdir -p /wordpress/public
+$ mount -t glusterfs web01:/vol01 /wordpress/public
+---------------------------------------------------------------------------------------------
+
+
+
+
+4. VALIDAR COMPARTILHAMENTO DE ARQUIVOS E ALTA DISPONIBILIDADE
+
+- Testar sincronização de arquivos
+- Configurar o /etc/fstab em cada servidor para que o ponto de montagem não seja 
+  desmontado em caso de restart do servidor
+
+$ web01:/web01 /wordpress glusterfs defaults,_netdev 0 0
+---------------------------------------------------------------------------------------------

@@ -1,0 +1,4 @@
+## INSTALACAO DO WORDPRESS
+
+wget http://wordpress.org/latest.tar.gz
+tar xvf latest.tar.gz -C /var/www/html --strip-components=1

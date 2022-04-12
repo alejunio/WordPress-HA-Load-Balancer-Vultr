@@ -1,0 +1,13 @@
+## Servidores Web - [3 Servers 1CPU 1G RAM]
+- Nginx
+- PHP 7.4 e FPM
+
+## Servidores DB - [1 Server 1CPU 1GB RAM]
+- MySQL
+
+## INFRAESTRUTURA HA WORDPRESS
+web01:
+web02:
+web03: 
+dbserver:
+

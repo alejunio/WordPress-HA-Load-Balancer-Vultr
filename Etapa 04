@@ -1,0 +1,4 @@
+## INSTALACAO SERVIDOR MYSQL
+
+1. Rodar automação Ansible
+2. Testar conexão MySQL entre os servidores do Cluster
