@@ -1,4 +1,7 @@
 ## INSTALACAO DO WORDPRESS
 
 wget http://wordpress.org/latest.tar.gz
-tar xvf latest.tar.gz -C /var/www/html --strip-components=1
+tar xvf latest.tar.gz -C . --strip-components=1
+
+# Com usuário root 
+/etc/init.d/cron restart
