@@ -1,7 +1,18 @@
 ## INSTALACAO DO WORDPRESS
 
+1. Download do WordPress 
+
+sudo su wordpress 
 wget http://wordpress.org/latest.tar.gz
 tar xvf latest.tar.gz -C . --strip-components=1
 
-# Com usuário root 
+2. Permissoes WordPress
+find . -type f -exec chmod 664 {} + 
+find . -type d -exec chmod 775 {} +
+chmod -R g+w  /wordpress/public/
+
+
+3. Com usuário root restartar o cron 
 /etc/init.d/cron restart
+
+// Restartamos o cron do servidor para evitar bugs de agendamentos de postagens no WordPress  
