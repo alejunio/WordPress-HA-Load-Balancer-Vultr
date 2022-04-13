@@ -2,9 +2,11 @@
 
 Software: GlusterFS
 
-// O GlusterFS é um sistema de arquivos de armazenamento conectado à rede que lhe permite agrupar recursos de armazenamento de várias máquinas. Desta forma, isso permite que você trate vários 
-// dispositivos de armazenamento que são distribuídos entre vários computadores como // uma unidade única e mais poderosa. O GlusterFS também lhe dá a liberdade de criar diferentes tipos de configurações de armazenamento,
-// muitas das quais são similares em funcionamento aos níveis RAID. Por exemplo, você pode distribuir os dados em diferentes nós no cluster, //ou implementar redundância para uma melhor disponibilidade de dados.
+// O GlusterFS é um sistema de arquivos de armazenamento conectado à rede que lhe permite agrupar recursos de armazenamento de várias máquinas. Desta forma, 
+// isso permite que você trate vários dispositivos de armazenamento que são distribuídos entre vários computadores como 
+// uma unidade única e mais poderosa. O GlusterFS também lhe dá a liberdade de criar diferentes tipos de configurações de armazenamento,
+// muitas das quais são similares em funcionamento aos níveis RAID. Por exemplo, você pode distribuir os dados em diferentes nós no cluster, 
+// ou implementar redundância para uma melhor disponibilidade de dados.
 
 
 
