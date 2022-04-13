@@ -1,0 +1,32 @@
+## CONFIGURAR REDE PRIVADA NA VULTR
+
+Antes de realizar o deploy das VPS na Vultr, crie uma rede privada virtual VPC
+em uma região de sua escolha. Você vai criar instâncias também na mesma região
+da sua VPC. 
+
+1. CONFIGURAR VPC e CRIAR 4 VPS
+
+- Configurar VPC
+- Verificar conectividade na rede privada 
+
+(Label)     (IP)
+web01       10.6.96.3
+web02       10.6.96.4
+web03       10.6.96.5
+dbserver    10.6.96.6
+---------------------------------------------------------------------------------------------
+2. CONFIGURAR HOSTNAME DE CADA SERVIDOR
+
+$ /etc/hostname 
+$ hostname 
+---------------------------------------------------------------------------------------------
+3. CONFIGURAR /etc/hosts
+
+10.6.96.3 web01.aws.dev.br web01 
+10.6.96.4 web02.aws.dev.br web02 
+10.6.96.5 web03.aws.dev.br web03
+10.6.96.6 dbserver
+---------------------------------------------------------------------------------------------
+4. CONFIGURAR ARQUIVO DE AUTOMACAO e inserir os dados para o /etc/hosts
+/etc/cloud/templates/hosts.debian.tmpl
+
