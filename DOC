@@ -11,3 +11,7 @@ web02:
 web03: 
 dbserver:
 
+## COMPONENTES VULTR
+VPS
+VPC
+Load Balancer
