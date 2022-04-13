@@ -1,11 +1,11 @@
-## Servidores Web - [3 Servers 1CPU 1G RAM]
+## SERVIDORES WEB SERVER - [3 Servers 1CPU 1G RAM]
 - Nginx
 - PHP 7.4 e FPM
 
-## Servidores DB - [1 Server 1CPU 1GB RAM]
+## SERVIDOR MYSQL - [1 Server 1CPU 1GB RAM]
 - MySQL
 
-## INFRAESTRUTURA HA WORDPRESS
+## IDENTIFICACAO INFRAESTRUTURA
 web01:
 web02:
 web03: 
