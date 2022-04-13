@@ -1,10 +1,17 @@
 ## CONFIGURAR O SERVIDOR DE ARQUIVOS COMPARTILHADO
+
 Software: GlusterFS
-https://www.gluster.org/
-https://docs.gluster.org/en/latest/
+
+// O GlusterFS é um sistema de arquivos de armazenamento conectado à rede que lhe permite agrupar recursos de armazenamento de várias máquinas. Desta forma, isso permite que você trate vários 
+// dispositivos de armazenamento que são distribuídos entre vários computadores como // uma unidade única e mais poderosa. O GlusterFS também lhe dá a liberdade de criar diferentes tipos de configurações de armazenamento,
+// muitas das quais são similares em funcionamento aos níveis RAID. Por exemplo, você pode distribuir os dados em diferentes nós no cluster, //ou implementar redundância para uma melhor disponibilidade de dados.
+
+
 
 
 1. INSTALAR O GLUSTERFS EM CADA SERVIDOR WEB
+
+https://docs.gluster.org/en/latest/Install-Guide/Install/
 
 web01
 web02
@@ -12,11 +19,23 @@ web03
 
 Iniciar o servico
 $ service glusterd start
+
+Isso permitirá que o serviço seja iniciado sempre que o servidor for inicializado:
 $ systemctl enable glusterd
 
-https://docs.gluster.org/en/latest/Install-Guide/Install/
----------------------------------------------------------------------------------------------
 
+Liberar Portas no Firewall para que os serviços funcionem corretamente
+
+-- Nos Web Services --
+ufw allow 80
+ufw allow 443
+ufw allow from IP-privado-01
+ufw allow from IP-privado-02
+ufw allow from IP-privado-03
+
+-- No VPS MySQL --
+ufw allow 3306
+---------------------------------------------------------------------------------------------
 
 2. ADICIONAR SERVIDORES AO POOL 
 
@@ -24,38 +43,50 @@ Acessar o web01 e adicionar servidores ao pool
 $ gluster peer probe web02
 $ gluster peer probe web03
 
+// O comando peer probe diz para o web01 confiar no web02 e web03, e registra-lo
+// como parte da sua pool de armazenamento, se a comunicação for bem sucedida, teremos
+// um resultado como success. 
+
 
 Verifique o status e a lista do pool
 $ gluster peer status
 $ gluster pool list
+
+Segurança: Liberar acesso ao volume somente para as máquinas do Cluster
+gluster volume set vol1 auth.allow web01,web02,web03
 ---------------------------------------------------------------------------------------------
 
-3. CONFIGURAR O VOLUME, BRICKS PONTO/MONTAGEM
+3. CRIANDO E CONFIGURANDO VOLUME DE ARMAZENAMENTO E MONTAGEM
 
-Em cada servidor criar o diretorio do volume
-$ mkdir -p /glusterfs/volume_wordpress
+// Nosso objetivo é criar um volume de armazenamento reduntante, caso uma máquina seja desligada
+// não queremos perder dados do nosso site WordPress e muito menos ter um ponto único de falha. 
+// Para atingir este fim, também criaremos um volume replicado. 
 
 
-No servidor principal, crie o volume
+No web01, crie o volume
 $ gluster volume create vol01 replica 3 transport tcp web01:/glusterfs/volume_wordpress web02:/glusterfs/volume_wordpress web03:/glusterfs/volume_wordpress force
 
-No servidor principal, inicie o volume
+No web01, inicie o volume
 $ gluster volume start vol01
 $ gluster volume info vol01
 
-$ Montar os bricks em cada servidor
+Criando o diretorio root do WordPress que será montado o Brick
 $ mkdir -p /wordpress/public
+
+// O Brick é um sistema de arquivos que podemos exportar como um ponto de montagem para o GlusterFS.
+
+Montando o Brick
 $ mount -t glusterfs web01:/vol01 /wordpress/public
 ---------------------------------------------------------------------------------------------
 
-
-
-
-4. VALIDAR COMPARTILHAMENTO DE ARQUIVOS E ALTA DISPONIBILIDADE
+4. VALIDAR COMPARTILHAMENTO DE ARQUIVOS NO CLUSTER
 
 - Testar sincronização de arquivos
-- Configurar o /etc/fstab em cada servidor para que o ponto de montagem não seja 
-  desmontado em caso de restart do servidor
 
-$ web01:/web01 /wordpress glusterfs defaults,_netdev 0 0
----------------------------------------------------------------------------------------------
+
+
+
+## Fontes e Documentos
+https://www.gluster.org/
+https://docs.gluster.org/en/latest/
+https://www.digitalocean.com/community/tutorials/how-to-create-a-redundant-storage-pool-using-glusterfs-on-ubuntu-20-04-pt

@@ -17,6 +17,8 @@ dbserver    10.6.96.6
 ---------------------------------------------------------------------------------------------
 2. CONFIGURAR HOSTNAME DE CADA SERVIDOR
 
+Configurar a resolução do nome dos hosts irá nos ajudar bastante na gestão da nossa infra. 
+
 $ /etc/hostname 
 $ hostname 
 ---------------------------------------------------------------------------------------------
