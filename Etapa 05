@@ -2,10 +2,12 @@
 
 1. Configurar Load Balancer + SSL 
 2. Configurar apontamento CloudFlare 
-
 3. Testar load balancer 
+
+4. Criar index.php e testar se o Load Balancer está distribuindo a carga
 
 # no index.php
 <?php
 echo gethostname(); // may output e.g,: sandie
 ?>
+

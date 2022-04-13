@@ -1,4 +1,4 @@
 ## INSTALACAO SERVIDOR MYSQL
 
-1. Rodar automação Ansible
+1. Rodar automação Ansible MySQL.zip
 2. Testar conexão MySQL entre os servidores do Cluster
