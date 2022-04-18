@@ -64,6 +64,8 @@ gluster volume set vol1 auth.allow web01,web02,web03
 // não queremos perder dados do nosso site WordPress e muito menos ter um ponto único de falha. 
 // Para atingir este fim, também criaremos um volume replicado. 
 
+Criar diretorio do volume
+mkdir -p /glusterfs/volume_wordpress
 
 No web01, crie o volume
 $ gluster volume create vol01 replica 3 transport tcp web01:/glusterfs/volume_wordpress web02:/glusterfs/volume_wordpress web03:/glusterfs/volume_wordpress force
