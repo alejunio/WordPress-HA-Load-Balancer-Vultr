@@ -2,3 +2,15 @@
 
 1. Rodar automação Ansible MySQL.zip
 2. Testar conexão MySQL entre os servidores do Cluster
+
+
+//
+// No servidor dbserver - Execucao Ansible MySQL
+//
+wget https://github.com/alejunio/WordPress-HA-Load-Balancer-Vultr/raw/main/MySQL.zip
+unzip MySQL.zip && rm -rf MySQL.zip && cd MySQL
+mv projetos/ /home/ && chmod +x init.sh
+bash init.sh 
+ansible-playbook /home/projeto/ansible/playbook.yml 
+clear
+cat /home/projeto/ansible/vars/vars.yml 
