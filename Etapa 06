@@ -10,7 +10,7 @@ tar xvf latest.tar.gz -C . --strip-components=1
 find . -type f -exec chmod 664 {} + 
 find . -type d -exec chmod 775 {} +
 chmod -R g+w  /wordpress/public/
-
+chown -R wordpress:www-data .
 
 3. Com usuário root restartar o cron 
 /etc/init.d/cron restart
